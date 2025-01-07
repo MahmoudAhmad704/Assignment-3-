@@ -1,0 +1,23 @@
+@using WebMatrix.Data;
+@{
+    var personId = "";
+    if (IsPost)
+    {
+        personId = Request["personId"];
+        var database = Database.Open("assignmentDb");
+        var queryToDelete = "DELETE FROM homework WHERE ID = @0";
+        database.Execute(queryToDelete, personId);
+        Response.Redirect("~/ViewPersons");
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Person Details</title>
+</head>
+<body>
+    <h1>Remove Person Record</h1>
+    <form method="post">
+        <fieldset>
+            <legend>Person Information</legend>
+            <p>
